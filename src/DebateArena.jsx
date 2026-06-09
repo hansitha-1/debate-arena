@@ -82,7 +82,12 @@ async function callClaude(systemPrompt, conversationHistory, newUserMsg) {
     { role: "user", content: newUserMsg },
   ];
 
-  const res = await fetch("http://localhost:3001/api/chat", {
+  // Use Vercel serverless function in production, local proxy in development
+  const API_URL = process.env.NODE_ENV === "production"
+    ? "/api/chat"
+    : "http://localhost:3001/api/chat";
+
+  const res = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ systemPrompt, messages }),
@@ -363,7 +368,12 @@ One punchy motivating line. Tell them what topic to try next.
 Be direct, specific, and honest. No fluff. Reference their actual arguments.`;
 
     try {
-      const res = await fetch("http://localhost:3001/api/chat", {
+      // Use Vercel serverless function in production, local proxy in development
+  const API_URL = process.env.NODE_ENV === "production"
+    ? "/api/chat"
+    : "http://localhost:3001/api/chat";
+
+  const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
