@@ -19,7 +19,7 @@
  * ============================================================
  */
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 // ─── CONSTANTS ───────────────────────────────────────────────
@@ -64,7 +64,7 @@ const DEBATE_STYLES = [
   },
 ];
 
-const ROUND_LIMIT = 90; // seconds per round — TODO_A1: wire to CountdownTimer
+// ROUND_LIMIT removed — timer not yet implemented
 
 const SAMPLE_TOPICS = [
   "AI will replace most jobs in 10 years",
@@ -235,7 +235,7 @@ export default function DebateArena() {
       const avg = scores.slice(-2).reduce((a, b) => a + b, 0) / 2;
       if (avg >= 72 && levelIdx < 3) setLevelIdx((i) => i + 1);
     }
-  }, [scores]);
+  }, [scores, levelIdx]);
 
   // ── VOICE INPUT ─────────────────────────────────────────────
   function startListening() {
