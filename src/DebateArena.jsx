@@ -647,9 +647,7 @@ export default function DebateArena() {
   }
 
   const avg=scores.length>0?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):null;
-  const youMsgs=msgs.filter(m=>m.role==="user");
-  const aiMsgs =msgs.filter(m=>m.role==="ai");
-  const gradeMsgs=msgs.filter(m=>m.role==="grade");
+
 
   // ══ START ══════════════════════════════════════════════════
   if(screen==="start") return (
